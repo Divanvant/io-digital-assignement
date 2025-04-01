@@ -7,6 +7,7 @@ import Edit from "./routes/Edit";
 import { useState } from "react";
 import { AppContext } from "./context/AppContext";
 import { IMDBMovie } from "./model/movie";
+import clsx from "clsx";
 
 const App = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -61,12 +62,27 @@ const App = () => {
                   className="sticky top-4 divide-y divide-gray-300"
                 >
                   <div className="pb-8 space-y-1 flex flex-col">
-                    <NavLink className="p-2 bg-slate-200 rounded-md" to="/">
+                    <NavLink
+                      className={({ isActive }) =>
+                        clsx(
+                          "p-2 bg-slate-200 rounded-md hover:bg-slate-400 transition",
+                          isActive ? "bg-slate-400" : ""
+                        )
+                      }
+                      to="/"
+                      end
+                    >
                       Home
                     </NavLink>
                     <NavLink
-                      className="p-2 bg-slate-200 rounded-md"
+                      className={({ isActive }) =>
+                        clsx(
+                          "p-2 bg-slate-200 rounded-md hover:bg-slate-400 transition",
+                          isActive ? "bg-slate-400" : ""
+                        )
+                      }
                       to="/favorites"
+                      end
                     >
                       Favorites
                     </NavLink>

@@ -6,7 +6,7 @@ const MovieCard: FunctionComponent<
   IMDBMovieListItem & { children: React.ReactNode }
 > = ({ Title, Poster, Year, imdbID, children }) => {
   return (
-    <li className="col-span-1 flex flex-col text-center bg-white rounded-lg shadow pb-4">
+    <li className="col-span-1 flex flex-col text-center bg-white rounded-lg shadow pb-4 transition hover:shadow-lg hover:-translate-y-2">
       <NavLink to={`/movie/${imdbID}`} className="flex-1 flex flex-col">
         <img src={Poster} className="h-48 mx-auto mt-4" />
         <div className="p-4">
