@@ -6,12 +6,34 @@ import Favorites from "./routes/Favorites";
 import Edit from "./routes/Edit";
 import { useState } from "react";
 import { AppContext } from "./context/AppContext";
+import { IMDBMovieListItem } from "./model/movie";
 
 const App = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [favorites, setFavorites] = useState<IMDBMovieListItem[]>([]);
+
+  const addFavorite = (movie: IMDBMovieListItem) => {
+    setFavorites((prev) => [...prev, movie]);
+  };
+
+  const removeFavorite = (id: string) => {
+    setFavorites((prev) => prev.filter((movie) => movie.imdbID !== id));
+  };
+
+  const isFavorite = (id: string) =>
+    favorites.some((movie) => movie.imdbID === id);
 
   return (
-    <AppContext.Provider value={{ searchQuery, setSearchQuery }}>
+    <AppContext.Provider
+      value={{
+        searchQuery,
+        setSearchQuery,
+        favorites,
+        addFavorite,
+        removeFavorite,
+        isFavorite,
+      }}
+    >
       <BrowserRouter basename="/">
         <div className="min-h-full">
           <header className="bg-white shadow-sm lg:static lg:overflow-y-visible">

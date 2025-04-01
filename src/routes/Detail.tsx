@@ -1,12 +1,26 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useContext } from "react";
 import Toggle from "../components/Toggle";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useMovieDetails } from "../hooks/useMovieDetails";
+import { AppContext } from "../context/AppContext";
 
 const Detail: FunctionComponent = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   if (!id) throw new Error("404: movie not found");
+
+  const appContext = useContext(AppContext);
+  if (!appContext)
+    throw new Error("Context must be used within a context provider");
+  const { addFavorite, removeFavorite, isFavorite } = appContext;
+
+  const toggleFavorite = () => {
+    if (isFavorite(id)) {
+      removeFavorite(id);
+    } else {
+      if (movieDetails) addFavorite(movieDetails);
+    }
+  };
 
   const { movieDetails, loading, error } = useMovieDetails(id);
 
@@ -31,7 +45,10 @@ const Detail: FunctionComponent = () => {
             </div>
           </div>
           <div className="mt-10 px-4 sm:px-0 sm:mt-16 lg:mt-0">
-            <Toggle />
+            <Toggle
+              isFavorite={isFavorite(id)}
+              onToggleFavorite={toggleFavorite}
+            />
             <h1 className="text-3xl font-extrabold tracking-tight text-gray-900">
               {movieDetails.Title}
             </h1>
