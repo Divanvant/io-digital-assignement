@@ -32,6 +32,7 @@ const App = () => {
         addFavorite,
         removeFavorite,
         isFavorite,
+        setFavorites,
       }}
     >
       <BrowserRouter basename="/">

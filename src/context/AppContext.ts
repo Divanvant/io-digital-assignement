@@ -8,6 +8,7 @@ interface AppContextType {
   addFavorite: (movie: IMDBMovie) => void;
   removeFavorite: (id: string) => void;
   isFavorite: (id: string) => boolean;
+  setFavorites: (favorites: IMDBMovie[]) => void;
 }
 
 export const AppContext = createContext<AppContextType | null>(null);
