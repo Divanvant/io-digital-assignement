@@ -33,7 +33,7 @@ export const useMovies = (searchQuery: string, delay = 500) => {
 
       try {
         const response = await fetch(
-          `http://www.omdbapi.com/?apikey=${
+          `https://www.omdbapi.com/?apikey=${
             import.meta.env.VITE_API_KEY
           }&s=${debouncedQuery}`
         );
