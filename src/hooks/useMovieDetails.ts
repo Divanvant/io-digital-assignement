@@ -3,7 +3,7 @@ import { IMDBMovie } from "../model/movie";
 
 export const useMovieDetails = (id: string) => {
   const [movieDetails, setMovieDetails] = useState<IMDBMovie | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {

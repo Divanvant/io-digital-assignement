@@ -7,7 +7,7 @@ export const useMovies = (searchQuery: string, delay = 500) => {
   const navigate = useNavigate();
 
   const [movies, setMovies] = useState<IMDBMovieListItem[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [debouncedQuery, setDebouncedQuery] = useState<string>(searchQuery);
 
