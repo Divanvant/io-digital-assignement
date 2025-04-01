@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import { IMDBMovieListItem } from "../model/movie";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const useMovies = (searchQuery: string, delay = 500) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const [movies, setMovies] = useState<IMDBMovieListItem[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -42,6 +46,10 @@ export const useMovies = (searchQuery: string, delay = 500) => {
       } catch (err) {
         setError((err as Error).message);
       } finally {
+        if (location.pathname !== "/") {
+          navigate("/");
+        }
+
         setLoading(false);
       }
     };

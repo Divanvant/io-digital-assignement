@@ -19,6 +19,15 @@ const Home: FunctionComponent = () => {
     return <div>Something went wrong fetching movies: {error}</div>;
   }
 
+  if (!movies.length) {
+    return (
+      <div className="text-center">
+        <h1 className="text-2xl mb-4">Looking for movies?</h1>
+        <p>Use the search bar above to search for movies</p>
+      </div>
+    );
+  }
+
   return (
     <ul
       role="list"
