@@ -29,3 +29,11 @@ export interface IMDBMovie {
   Website: string;
   Response: string;
 }
+
+export interface IMDBMovieListItem {
+  Title: string;
+  Year: string;
+  imdbID: string;
+  Type: string;
+  Poster: string;
+}

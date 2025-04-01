@@ -1,6 +1,12 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useContext } from "react";
+import { AppContext } from "../context/AppContext";
 
 const Search: FunctionComponent = () => {
+  const appContext = useContext(AppContext);
+  if (!appContext)
+    throw new Error("Context must be used within a context provider");
+
+  const { setSearchQuery } = appContext;
   return (
     <div className="w-full">
       <label className="sr-only">{}</label>
@@ -24,6 +30,7 @@ const Search: FunctionComponent = () => {
           className="block w-full bg-white border border-gray-300 rounded-md py-2 pl-10 pr-3 text-sm placeholder-gray-500 focus:outline-none focus:text-gray-900 focus:placeholder-gray-400 focus:ring-1 focus:ring-rose-500 focus:border-rose-500 sm:text-sm"
           placeholder="Search"
           type="search"
+          onChange={(event) => setSearchQuery(event.target.value)}
         />
       </div>
     </div>
