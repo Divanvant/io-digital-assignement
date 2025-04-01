@@ -6,13 +6,13 @@ import Favorites from "./routes/Favorites";
 import Edit from "./routes/Edit";
 import { useState } from "react";
 import { AppContext } from "./context/AppContext";
-import { IMDBMovieListItem } from "./model/movie";
+import { IMDBMovie } from "./model/movie";
 
 const App = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [favorites, setFavorites] = useState<IMDBMovieListItem[]>([]);
+  const [favorites, setFavorites] = useState<IMDBMovie[]>([]);
 
-  const addFavorite = (movie: IMDBMovieListItem) => {
+  const addFavorite = (movie: IMDBMovie) => {
     setFavorites((prev) => [...prev, movie]);
   };
 

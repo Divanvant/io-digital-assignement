@@ -1,11 +1,11 @@
 import { createContext } from "react";
-import { IMDBMovieListItem } from "../model/movie";
+import { IMDBMovie } from "../model/movie";
 
 interface AppContextType {
   searchQuery: string;
   setSearchQuery: (query: string) => void;
-  favorites: IMDBMovieListItem[];
-  addFavorite: (movie: IMDBMovieListItem) => void;
+  favorites: IMDBMovie[];
+  addFavorite: (movie: IMDBMovie) => void;
   removeFavorite: (id: string) => void;
   isFavorite: (id: string) => boolean;
 }
